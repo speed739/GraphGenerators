@@ -9,10 +9,22 @@ namespace GraphGenerators
 {
     public class AddToSequenceCommand : ICommand
     {
-        private DegreeValidation Validation = new DegreeValidation();
+        private DegreeValidation Validation;
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (parameter != null)
+            {
+                var result = parameter as GraphGeneratorModel;
+                Validation = new DegreeValidation();
+                if (Validation.Validate(result).IsValid)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            else
+                return false;
         }
 
         public void Execute(object parameter)

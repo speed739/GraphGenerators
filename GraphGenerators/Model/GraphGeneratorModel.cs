@@ -39,7 +39,7 @@ namespace GraphGenerators
             _permutationsInArray = new List<int[,]>();
             _matrixView = new DataView();
             _matrixVisable = Visibility.Hidden;
-            
+
         }
         public int counter
         {
@@ -174,7 +174,6 @@ namespace GraphGenerators
                 }
             }
         }
-
         public int Degree
         {
             get => _degree;
@@ -187,7 +186,6 @@ namespace GraphGenerators
                 }
             }
         }
-
         public byte[] ImageInBytes
         {
             get => _imageInBytes;

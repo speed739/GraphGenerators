@@ -19,7 +19,12 @@
             <Setter Property="FontSize" Value="19"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
-
+        <Style TargetType="Label" x:Key="lblStyle">
+            <Setter Property="Foreground"  Value="White"/>
+            <Setter Property="FontSize" Value="19"/>
+            <Setter Property="FontFamily" Value="CenturyGhotica"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
     </Window.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -37,17 +42,25 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Column="0" Grid.Row="2"  Grid.RowSpan="5" Background="#303030">
-            <Label DockPanel.Dock="Top" Content="Podaj stopien" Margin="0,30,5,5" HorizontalAlignment="Left" FontSize="20" FontFamily="CenturyGhotica" Foreground="White"/>
-            <TextBox  DockPanel.Dock="Top" Margin="5,0,5,5" FontSize="23" FontFamily="CenturyGhotica" VerticalAlignment="Center" Text="{Binding Model.Degree,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <Label DockPanel.Dock="Top" Content="Podaj stopien" Margin="0,30,5,5" 
+                   Style="{StaticResource lblStyle}"/>
+            <TextBox  DockPanel.Dock="Top" Margin="5,0,5,5" FontSize="23" FontFamily="CenturyGhotica"
+                      VerticalAlignment="Center" Text="{Binding Model.Degree,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
-                    <KeyBinding   Command="{Binding AddToSequenceCommand}" CommandParameter="{Binding Model}" Key="Return" />
+                    <KeyBinding  Command="{Binding AddToSequenceCommand}" CommandParameter="{Binding Model}" Key="Return" />
                 </TextBox.InputBindings>
             </TextBox>
-            <Label  DockPanel.Dock="Top" Margin="5,0,5,5" FontSize="20" FontFamily="CenturyGhotica" Foreground="White" HorizontalAlignment="Center" Content="{Binding Model.GraphSequencePreview,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            <Button DockPanel.Dock="Top" Margin="5,0,5,5" Content=" Generuj graf" Style="{StaticResource TabButton}" Command="{Binding IsGraphicCommand}" CommandParameter="{Binding Model}" />
-            <Button DockPanel.Dock="Top" Margin="5,0,5,80" Content=" Szukaj permutacji "  Style="{StaticResource TabButton}" Command="{Binding FindAllPermutationsCommand}" CommandParameter="{Binding Model}" />
-            <Label  DockPanel.Dock="Top"  FontSize="20" FontFamily="CenturyGhotica" Foreground="White" HorizontalAlignment="Center" Content=" Macierz [0,1] "/>
-            <DataGrid DockPanel.Dock="Top" Margin="5,0,5,5" Visibility="{Binding Model.MatrixVisable}" HorizontalAlignment="Center"  Height="auto" SelectionUnit="Cell" Width="auto" ItemsSource="{Binding Model.MatrixView,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False">
+            <Label  DockPanel.Dock="Top" Margin="5,0,5,5" Style="{StaticResource lblStyle}"
+                    Content="{Binding Model.GraphSequencePreview,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <Button DockPanel.Dock="Top" Margin="5,0,5,5" Content=" Generuj graf" Style="{StaticResource TabButton}"
+                    Command="{Binding IsGraphicCommand}" CommandParameter="{Binding Model}" />
+            <Button DockPanel.Dock="Top" Margin="5,0,5,80" Content=" Szukaj permutacji " Style="{StaticResource TabButton}"
+                    Command="{Binding FindAllPermutationsCommand}" CommandParameter="{Binding Model}" />
+            <Label  DockPanel.Dock="Top" Content=" Macierz [0,1] " Style="{StaticResource lblStyle}"/>
+            <DataGrid DockPanel.Dock="Top" Margin="5,0,5,5" Visibility="{Binding Model.MatrixVisable}"
+                      HorizontalAlignment="Center"  Height="auto" SelectionUnit="Cell" Width="auto" 
+                      ItemsSource="{Binding Model.MatrixView,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      CanUserAddRows="False">
                 <DataGrid.RowHeaderTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding ElementName, 
@@ -58,16 +71,19 @@
             <Label  DockPanel.Dock="Top"/>
         </DockPanel>
         <DockPanel Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Background="#303030">
-            <Label  FontSize="19" Margin="280,0,0,0" Content="Permutacje" Foreground="White" />
-            <Label  FontSize="19" Margin="0,0,0,0" Content="{Binding Model.counter}" Foreground="White" />
-            <Label  FontSize="19" Content="-" Foreground="White" />
-            <Label  FontSize="19" Margin="0,0,90,0" Content="{Binding Model.PermutationsCount}" Foreground="White" />
-            <Button  Margin="0,0,0,5" Width="250" Content="Nastepna permutacja" Style="{StaticResource TabButton}" Command="{Binding NextPermutationCommand}" CommandParameter="{Binding Model}" />
+            <Label Style="{StaticResource lblStyle}" Margin="280,0,0,0" Content="Permutacje" />
+            <Label Style="{StaticResource lblStyle}" Margin="0,0,0,0" Content="{Binding Model.counter}" />
+            <Label Style="{StaticResource lblStyle}" Content="-" />
+            <Label Style="{StaticResource lblStyle}" Margin="0,0,90,0" Content="{Binding Model.PermutationsCount}" />
+            <Button  Margin="0,0,0,5" Width="250" Content="Nastepna permutacja" Style="{StaticResource TabButton}"
+                     Command="{Binding NextPermutationCommand}" CommandParameter="{Binding Model}" />
         </DockPanel>
         <Rectangle Fill="#202020" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="7" />
         <Rectangle Fill="#202020" Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="7" />
         <Rectangle Fill="#202020" Grid.Row="8" Grid.Column="0"  Grid.ColumnSpan="7"  />
-        <Image Grid.Row="3" Grid.Column="2"  Margin="0,10,5,15" Grid.ColumnSpan="1" Stretch="Uniform" VerticalAlignment="Top" Source="{Binding Model.ImageInBytes}"/>
-        <Label Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="4" Margin="5,0,0,40"  Foreground="White" FontSize="35" FontFamily="Ghotica Century" Content="Generator grafów o podanym ciagu stopni"/>
+        <Image Grid.Row="3" Grid.Column="2"  Margin="0,10,5,15" Grid.ColumnSpan="1" Stretch="Uniform"
+               VerticalAlignment="Top" Source="{Binding Model.ImageInBytes}"/>
+        <Label Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="4" Margin="5,0,0,40"  Foreground="White"
+               FontSize="35" FontFamily="Ghotica Century" Content="Generator grafów o podanym ciagu stopni"/>
     </Grid>
 </Window>
