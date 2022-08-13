@@ -200,7 +200,6 @@ namespace GraphGenerators
             for (int k = 0; k < answer.Length; k++)
             {
                 string a = answer[k].ToString();
-                //ominiecie przekatnej
                 if (k < index)
                 {
                     graphMatrixCopy[index, k] = int.Parse(a);
@@ -224,7 +223,7 @@ namespace GraphGenerators
         private bool IsDegreeCorrect(GraphGeneratorModel model, int[,] graphMatrixCopy)
         {
             int equalityCounter = 0;
-            
+
             //sprawdzenie sumy stopnia w columnach
             var result = Enumerable.Range(0, graphMatrixCopy.GetLength(0))
                         .Select(c => Enumerable.Range(0, graphMatrixCopy.GetLength(1))

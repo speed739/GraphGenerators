@@ -100,10 +100,12 @@
     <Compile Include="Command\FindAllPermutationsCommand.cs" />
     <Compile Include="Command\IsGraphicCommand.cs" />
     <Compile Include="Command\NextPermutationCommand.cs" />
+    <Compile Include="Command\ResetCommand.cs" />
     <Compile Include="Method\GraphMethode.cs" />
     <Compile Include="Model\GraphGeneratorModel.cs" />
     <Compile Include="Validation\DegreeValidation.cs" />
-    <Compile Include="Validation\GraphValidation.cs" />
+    <Compile Include="Validation\GraphMatrixValidation.cs" />
+    <Compile Include="Validation\GraphSequenceValidation.cs" />
     <Compile Include="Validation\NextPermutationValidation.cs" />
     <Compile Include="ViewModel\GraphGeneratorViewModel.cs" />
     <Page Include="View\MainWindow.xaml">

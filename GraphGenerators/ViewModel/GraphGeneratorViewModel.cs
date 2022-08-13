@@ -13,6 +13,7 @@ namespace GraphGenerators
         public AddToSequenceCommand AddToSequenceCommand { get; set; }
         public FindAllPermutationsCommand FindAllPermutationsCommand { get; set; }
         public NextPermutationCommand NextPermutationCommand { get; set; }
+        public ResetCommand ResetCommand { get; set; }
 
         public GraphGeneratorViewModel()
         {
@@ -21,6 +22,7 @@ namespace GraphGenerators
             AddToSequenceCommand = new AddToSequenceCommand();
             FindAllPermutationsCommand = new FindAllPermutationsCommand();
             NextPermutationCommand = new NextPermutationCommand();
+            ResetCommand = new ResetCommand(); 
         }
 
     }

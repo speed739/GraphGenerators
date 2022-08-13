@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace GraphGenerators
 {
-    public class GraphValidation : AbstractValidator<GraphGeneratorModel>
+    public class GraphSequenceValidation : AbstractValidator<GraphGeneratorModel>
     {
 
-        public GraphValidation()
+        public GraphSequenceValidation()
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 

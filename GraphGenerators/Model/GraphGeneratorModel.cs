@@ -17,12 +17,17 @@ namespace GraphGenerators
 {
     public class GraphGeneratorModel : INotifyPropertyChanged
     {
-
+        private void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        
         private List<int> _graphSequence;
         private int _degree;
         private string _graphSequenceView;
         private ImageSource _image;
-        private byte[] _imageInBytes;
+        private byte[] _imageInBytes; 
         private DataView _matrixView;
         private int[,] _graphMatrix;
         private Visibility _matrixVisable;
@@ -199,11 +204,7 @@ namespace GraphGenerators
             }
         }
 
-        private void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
+        
     }
 }
 

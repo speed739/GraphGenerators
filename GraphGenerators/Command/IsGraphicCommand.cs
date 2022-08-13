@@ -16,14 +16,14 @@ namespace GraphGenerators
 {
     public class IsGraphicCommand : ICommand
     {
-        private GraphValidation Validations;
+        private GraphSequenceValidation Validations;
 
         public bool CanExecute(object parameter)
         {
             if (parameter != null)
             {
                 var result = parameter as GraphGeneratorModel;
-                Validations = new GraphValidation();
+                Validations = new GraphSequenceValidation();
                 if (Validations.Validate(result).IsValid)
                 {
                     return true;
@@ -34,7 +34,6 @@ namespace GraphGenerators
             else
                 return false;
         }
-
         public void Execute(object parameter)
         {
             var model = parameter as GraphGeneratorModel;
@@ -43,9 +42,10 @@ namespace GraphGenerators
             List<int> graphSequenceList = model.GraphSequence.ToList();
             model.GraphSequenceCopy = model.GraphSequence.ToList();
 
-
             if (methode.IsGraphic(graphSequenceList))
             {
+                MessageBox.Show("Podany ciąg spełnia wymogi graficzności", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 model.PermutationsInArray.Clear();
                 methode.CreateMatrix(model);
                 methode.ConvertGraphToImage();
@@ -61,15 +61,12 @@ namespace GraphGenerators
                 model.GraphSequencePreview = string.Empty;
                 model.GraphSequence.Clear();
                 model.GraphSequenceCopy.Clear();
-
             }
         }
-
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
-
     }
 }
